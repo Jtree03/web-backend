@@ -1,0 +1,35 @@
+services:
+  # server_gateway:
+  #   build: ./gateway
+  # server_auth:
+  #   build: ./auth
+  db_auth:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: auth
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_auth:/data/db
+  # server_event:
+  #   build: ./event
+  db_event:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: event
+    ports:
+      - "27018:27017"
+    volumes:
+      - db_event:/data/db
+
+volumes:
+  db_auth:
+    driver: local
+  db_event:
+    driver: local
