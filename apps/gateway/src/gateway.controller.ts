@@ -1,12 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
-import { GatewayService } from './gateway.service';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 
 @Controller()
 export class GatewayController {
-  constructor(private readonly gatewayService: GatewayService) {}
+  constructor() {}
 
-  @Get()
-  getHello(): string {
-    return this.gatewayService.getHello();
+  @ApiExcludeEndpoint()
+  @Get('')
+  home() {
+    return 'Welcome to the MapleStory Web Backend Gateway!';
+  }
+
+  @Get('ping')
+  ping() {
+    return 'pong';
   }
 }
