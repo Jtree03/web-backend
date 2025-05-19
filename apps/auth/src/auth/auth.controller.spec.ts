@@ -1,3 +1,5 @@
+import { UserAction } from '../user-actions/models/user-action.schema';
+import { UserActionsService } from '../user-actions/user-actions.service';
 import { User } from '../users/models/user.schema';
 import { UsersService } from '../users/users.service';
 import { AuthController } from './auth.controller';
@@ -15,9 +17,20 @@ describe('AuthController', () => {
       providers: [
         AuthService,
         UsersService,
+        UserActionsService,
         JwtService,
         {
           provide: getModelToken(User.name),
+          useValue: {
+            create: jest.fn(),
+            find: jest.fn(),
+            findById: jest.fn(),
+            findByIdAndUpdate: jest.fn(),
+            findByIdAndDelete: jest.fn(),
+          },
+        },
+        {
+          provide: getModelToken(UserAction.name),
           useValue: {
             create: jest.fn(),
             find: jest.fn(),
