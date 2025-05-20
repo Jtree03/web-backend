@@ -1,8 +1,31 @@
 services:
-  # server_gateway:
-  #   build: ./gateway
-  # server_auth:
-  #   build: ./auth
+  server_gateway:
+    build:
+      context: . 
+      dockerfile: ./apps/gateway/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./apps/gateway/.env
+      - ./.env
+  server_auth:
+    build:
+      context: . 
+      dockerfile: ./apps/auth/Dockerfile
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./apps/auth/.env
+      - ./.env
+  server_event:
+    build:
+      context: . 
+      dockerfile: ./apps/event/Dockerfile
+    ports:
+      - "5002:5002"
+    env_file:
+      - ./apps/event/.env
+      - ./.env
   db_auth:
     image: mongo
     restart: always
@@ -14,8 +37,6 @@ services:
       - "27017:27017"
     volumes:
       - db_auth:/data/db
-  # server_event:
-  #   build: ./event
   db_event:
     image: mongo
     restart: always

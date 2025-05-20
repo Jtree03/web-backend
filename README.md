@@ -1,4 +1,4 @@
-# 메이플스토리 웹 백엔드 과제
+# 웹 백엔드 과제
 
 ## 실행 방법
 
@@ -8,13 +8,9 @@
 docker-compose up -d
 ```
 
-### 테스트 실행 (DB 필요 X)
+### swagger api 서버 접속
 
-```shell
-npm i
-npm run test # 단위 테스트
-npm run test:e2e # 통합 테스트
-```
+http://localhost:5000/api
 
 ## 특이사항
 
