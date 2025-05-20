@@ -3,7 +3,7 @@ import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { RuleOperator } from 'libs/enums/event-rule.enum';
 
 export class CreateEventRuleDTO {
-  @ApiProperty()
+  @ApiProperty({ example: 'LOGIN_DAY_FIRST' })
   @IsString()
   actionType: string;
 
@@ -11,7 +11,7 @@ export class CreateEventRuleDTO {
   @IsEnum(RuleOperator)
   operator: RuleOperator;
 
-  @ApiProperty({ example: 1 })
+  @ApiProperty({ example: 7 })
   @IsNumber()
   threshold: number;
 }

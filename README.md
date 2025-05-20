@@ -2,15 +2,57 @@
 
 ## 실행 방법
 
-### 서버 실행
+### 1. 서버 실행
 
 ```shell
 docker-compose up -d
 ```
 
-### swagger api 서버 접속
+### 2. swagger api 서버 접속
 
 http://localhost:5000/api
+
+### 3. /auth/signup 요청 수행
+
+비밀번호는 8자리 이상이어야합니다.
+
+Body:
+```json
+{
+  "nickname": "asd",
+  "email": "admin@nexon.com",
+  "password": "asdfasdf"
+}
+```
+
+### 4. /auth/login 요청 수행
+
+Body:
+```json
+{
+  "email": "admin@nexon.com",
+  "password": "asdfasdf"
+}
+```
+
+Response:
+```json
+{
+  "access_token": "access_token"
+}
+```
+
+### 5. 자물쇠 클릭 or Authorize 버튼 클릭
+
+![스크린샷 2025-05-20 154755](https://github.com/user-attachments/assets/d2371214-c383-4259-b128-f30da82f0c83)
+
+Value 에 access_token 을 그대로 넣어줍니다.
+"Bearer access_token" 형태로 자동으로 변환해줍니다.
+
+### 6. 나머지 api 실행
+
+첫번째로 가입하는 유저는 Admin 권한이 자동 부여됩니다.
+다음 가입하는 유저로 일반적인 테스트를 수행할 수 있습니다.
 
 ## 특이사항
 

@@ -52,8 +52,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: event
+    command: mongod --port 27018
     ports:
-      - "27018:27017"
+      - "27018:27018"
     volumes:
       - db_event:/data/db
     networks:

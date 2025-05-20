@@ -39,7 +39,7 @@ export class RewardRequestsService {
   }
 
   findAll(userID?: string) {
-    return this.rewardRequestModel.find({ userID }).exec();
+    return this.rewardRequestModel.find(userID ? { userID } : {}).exec();
   }
 
   async checkRules(event: EventDocument, userID: string): Promise<boolean> {

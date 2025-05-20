@@ -1,7 +1,8 @@
 import { EventsService } from '../events/events.service';
 import { CreateRewardRequestDTO } from './dto/create-reward-request.dto';
+import { FindAllRewardRequestDTO } from './dto/find-all-reward-request.dto';
 import { RewardRequestsService } from './reward-requests.service';
-import { ConflictException, Controller, Req } from '@nestjs/common';
+import { ConflictException, Controller } from '@nestjs/common';
 import { MessagePattern, Payload, RpcException } from '@nestjs/microservices';
 import { RequestStatus } from 'libs/enums/reward-request.enum';
 
@@ -43,7 +44,7 @@ export class RewardRequestsController {
   }
 
   @MessagePattern('findAllRewardRequests')
-  findAll(@Payload() payload: { userID?: string }) {
+  findAll(@Payload() payload: FindAllRewardRequestDTO) {
     return this.rewardRequestsService.findAll(payload.userID);
   }
 }
